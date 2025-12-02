@@ -1,0 +1,212 @@
+/* --- DEFINISI WARNA (CSS VARIABLES) --- */
+:root {
+    /* Palet Default (Dark Mode) */
+    --bg-main: #1B262C;          /* Background Utama */
+    --bg-card: #0F4C75;          /* Warna Kartu */
+    --bg-hover: #3282B8;         /* Warna Saat Hover */
+    --text-primary: #BBE1FA;     /* Warna Teks Utama */
+    --text-secondary: rgba(187, 225, 250, 0.7); /* Teks Pudar */
+    --border-profile: #3282B8;   /* Border Foto */
+    --icon-toggle: #3282B8;      /* Warna Icon Matahari/Bulan */
+}
+
+/* Palet Light Mode (Akan aktif jika class .light-mode ada di body) */
+body.light-mode {
+    --bg-main: #F0F4F8;          /* Putih Kebiruan */
+    --bg-card: #FFFFFF;          /* Putih Bersih */
+    --bg-hover: #D0E7F5;         /* Biru Sangat Muda */
+    --text-primary: #1B262C;     /* Teks Jadi Gelap */
+    --text-secondary: #0F4C75;   /* Teks Sekunder Biru Gelap */
+    --border-profile: #0F4C75;   
+    --icon-toggle: #1B262C;
+}
+
+/* --- RESET & GLOBAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    /* Transisi halus saat ganti tema */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Container Utama */
+.container {
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 20px;
+    text-align: center;
+    animation: fadeInPage 0.8s ease-out forwards;
+    opacity: 0; 
+}
+
+/* --- BAGIAN PROFIL --- */
+.profile-section {
+    margin-bottom: 30px;
+}
+
+.img-container {
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--border-profile);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.5s ease;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+}
+
+.badge {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    opacity: 0.8;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.bio {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+/* --- TOMBOL LINKS --- */
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.link-card {
+    background-color: var(--bg-card);
+    color: var(--text-primary); /* Mengikuti warna teks tema */
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Khusus Teks di dalam kartu agar kontras di light mode */
+body.light-mode .link-card {
+    color: #1B262C; /* Paksa teks gelap di light mode */
+}
+body.light-mode .link-card .text-box p {
+    color: #0F4C75;
+}
+
+.link-card:hover {
+    background-color: var(--bg-hover);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.icon-box {
+    font-size: 1.5rem;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.text-box {
+    text-align: left;
+}
+
+.text-box h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.text-box p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+/* --- TOMBOL TOGGLE TEMA --- */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: var(--icon-toggle);
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 50%;
+    transition: transform 0.3s ease, color 0.5s ease;
+    z-index: 100;
+}
+
+.theme-toggle:hover {
+    transform: rotate(20deg) scale(1.1);
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* --- ANIMASI --- */
+@keyframes fadeInPage {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animasi Staggered */
+.link-card { opacity: 0; animation: slideInCard 0.5s ease forwards; }
+.link-card:nth-child(1) { animation-delay: 0.2s; }
+.link-card:nth-child(2) { animation-delay: 0.3s; }
+.link-card:nth-child(3) { animation-delay: 0.4s; }
+.link-card:nth-child(4) { animation-delay: 0.5s; }
+.link-card:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes slideInCard {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-exit {
+    animation: fadeOutPage 0.5s ease forwards;
+}
+
+@keyframes fadeOutPage {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); filter: blur(5px); }
+}

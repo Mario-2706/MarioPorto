@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Alexandro Tethool - Bio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="porto.css">
+</head>
+<body>
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-lightbulb" id="theme-icon"></i>
+    </div>
+
+    <div class="container" id="main-container">
+        
+        <header class="profile-section">
+            <div class="img-container">
+                <img src="porto.jpg" alt="Foto Profil" class="profile-pic">
+            </div>
+            <h1>Mario Alexandro Tethool</h1>
+            <span class="badge">Web Developer and Manager</span>
+            <p class="bio">
+                Welcome to my Biolink page. I'm a Web Developer and Team Manager, working with Front-End websites and also managing a team.
+            </p>
+        </header>
+
+        <div class="links-container">
+            
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=viertethool@gmail.com" class="link-card" onclick="handleExit(event, this.href)">
+                <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                <div class="text-box">
+                    <h3>EMAIL</h3>
+                    <p>Contact me via email</p>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/mario-tethool-b127a5380" class="link-card" target="_blank" onclick="handleExit(event, this.href)">
+                <div class="icon-box"><i class="fab fa-linkedin"></i></div>
+                <div class="text-box">
+                    <h3>LINKEDIN</h3>
+                    <p>Connect with me professionally</p>
+                </div>
+            </a>
+
+            <a href="https://github.com/Mario-2706" class="link-card" target="_blank" onclick="handleExit(event, this.href)">
+                <div class="icon-box"><i class="fab fa-github"></i></div>
+                <div class="text-box">
+                    <h3>GITHUB</h3>
+                    <p>Check out my code repositories</p>
+                </div>
+            </a>
+
+            <a href="https://www.instagram.com/_alxtethool/" class="link-card" target="_blank" onclick="handleExit(event, this.href)">
+                <div class="icon-box"><i class="fab fa-instagram"></i></div>
+                <div class="text-box">
+                    <h3>INSTAGRAM</h3>
+                    <p>Follow my creative journey</p>
+                </div>
+            </a>
+
+            <a href="https://wa.me/6281344512794" class="link-card" onclick="handleExit(event, this.href)">
+                <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                <div class="text-box">
+                    <h3>CONTACT ME</h3>
+                    <p>Get in touch via WhatsApp</p>
+                </div>
+            </a>
+
+        </div>
+
+        <footer>
+            <p>© 2025 Mario Alexandro Tethool</p>
+        </footer>
+    </div>
+
+    <script>
+        // 1. Script untuk Ganti Tema (Dark/Light)
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+
+            // Toggle class 'light-mode' pada body
+            body.classList.toggle('light-mode');
+
+            // PERBAIKAN LOGIKA IKON:
+            // Jika masuk mode terang, ubah ikon jadi Bulan (untuk tanda kembali ke gelap)
+            if (body.classList.contains('light-mode')) {
+                icon.classList.remove('fa-lightbulb');
+                icon.classList.add('fa-moon'); 
+            } else {
+                // Jika kembali ke mode gelap, ubah ikon jadi Bohlam (untuk tanda ke terang)
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-lightbulb'); 
+            }
+        }
+
+        // 2. Script untuk Animasi Keluar
+        function handleExit(event, url) {
+            // Jika ada target="_blank", biarkan browser membuka tab baru tanpa animasi keluar
+            if (event.currentTarget.target === "_blank" || url.startsWith('mailto:')) {
+                return; 
+            }
+
+            event.preventDefault(); 
+            const container = document.getElementById('main-container');
+            
+            container.classList.add('page-exit');
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
